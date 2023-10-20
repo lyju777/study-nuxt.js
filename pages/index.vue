@@ -21,6 +21,9 @@
           <span>{{ product.price }}</span>
         </li>
       </ul>
+      <div class="cart-wrapper">
+        <button class="btn" @click="moveTocartPage">장바구니 바로가기</button>
+      </div>
     </main>
   </div>
 </template>
@@ -63,6 +66,9 @@ export default {
         ...item,
         imageUrl: item.imageUrl.replace('{id}', Math.floor(Math.random() * 30)),
       }))
+    },
+    moveTocartPage() {
+      this.$router.push('/cart')
     },
   },
 }
