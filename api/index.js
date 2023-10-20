@@ -7,4 +7,12 @@ const instance = axios.create({
 function fetchProductById(id) {
   return instance.get(`/products/${id}`)
 }
-export { fetchProductById }
+
+function fetchProductsByKeyword(keyword) {
+  return instance.get(`/products`, {
+    params: {
+      name_like: keyword,
+    },
+  })
+}
+export { fetchProductById, fetchProductsByKeyword }

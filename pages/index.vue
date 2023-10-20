@@ -1,7 +1,10 @@
 <template>
   <div class="app">
     <main>
-      <div><input type="text" /></div>
+      <search-input
+        v-model="searchKeyword"
+        @search="searchProducts"
+      ></search-input>
       <ul>
         <li
           v-for="product in products"
@@ -24,9 +27,12 @@
 
 <script>
 import axios from 'axios'
+import SearchInput from '~/components/SearchInput.vue'
+import { fetchProductsByKeyword } from '~/api'
 
 export default {
-  name: 'LearnNuxtMainJs',
+  name: 'PageIndex',
+  components: { SearchInput },
 
   async asyncData() {
     const reponse = await axios.get('http://localhost:3000/products')
@@ -40,18 +46,23 @@ export default {
     }
   },
 
-  // data() {
-  //   return {
-  //     products: [],
-  //   }
-  // },
-
-  // async created() {
-  // },
+  data() {
+    return {
+      searchKeyword: '',
+    }
+  },
 
   methods: {
     moveToDetailPage(id) {
       this.$router.push(`detail/${id}`)
+    },
+    async searchProducts() {
+      const reponse = await fetchProductsByKeyword(this.searchKeyword)
+      console.log(reponse.data)
+      this.products = reponse.data.map((item) => ({
+        ...item,
+        imageUrl: item.imageUrl.replace('{id}', Math.floor(Math.random() * 30)),
+      }))
     },
   },
 }
