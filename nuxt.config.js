@@ -40,6 +40,14 @@ export default {
     port: process.env.NODE_ENV === 'production' ? null : 5000,
   },
 
+  // env config
+  env: {
+    baseURL:
+      process.env.NODE_ENV === 'production'
+        ? 'https://my-json-server.typicode.com/lyju777/nuxt-shopping-api'
+        : 'http://localhost:3000',
+  },
+
   // proxy: {
   //   '/api': 'http://localhost:5000',
   // },
