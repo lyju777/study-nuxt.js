@@ -29,16 +29,16 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 import SearchInput from '~/components/SearchInput.vue'
-import { fetchProductsByKeyword } from '~/api'
+import { fetchProductsByKeyword, fetchProducts } from '~/api'
 
 export default {
   name: 'PageIndex',
   components: { SearchInput },
 
   async asyncData() {
-    const reponse = await axios.get('http://localhost:3000/products')
+    const reponse = await fetchProducts()
     // console.log(reponse)
     const products = reponse.data
     return {
