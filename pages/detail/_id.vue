@@ -36,6 +36,16 @@ export default {
   data() {
     return {}
   },
+  head: {
+    title: 'Shopping Item Detail',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: '이 상품은 ~~입니다.',
+      },
+    ],
+  },
 
   //   created() {
   //     const id = console.log(this.$route.params.id)
